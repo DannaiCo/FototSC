@@ -12,29 +12,29 @@
     }
 
     html, body {
-  width: 2560px;
-  height: 1440px;
-  margin: 0;
-  padding: 0;
-  background-color: black;
-  overflow: hidden;
-}
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      overflow: hidden;
+    }
 
-   .marco {
+    .marco {
       position: relative;
-      width: 2560px;
-      height: 1440px;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       background-color: black;
     }
 
     video#fondo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
       position: absolute;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       z-index: 1;
     }
 
@@ -48,8 +48,8 @@
 
     .foto {
       position: absolute;
-      top: 350px; /* 🎯 Ajusta aquí la posición vertical */
-      left: 1745px; /* 🎯 Ajusta aquí la posición horizontal */
+      top: 350px;  /* Ajusta según diseño */
+      left: 1745px; 
       max-height: 775px;
       border-radius: 2px;
       box-shadow: 0 0 20px white;
@@ -57,13 +57,13 @@
 
     .nombre {
       position: absolute;
-      top: 825px; /* 🎯 Ajusta aquí la posición vertical */
-      left: 36%; 
+      top: 825px;
+      left: 36%;
       transform: translateX(-50%);
       font-size: 6.5em;
-      font-weight: Extra bold;
-	  font-family: "jaf-domus-titling-web", sans-serif;
-  font-style: normal;
+      font-weight: 800;
+      font-family: "jaf-domus-titling-web", sans-serif;
+      font-style: normal;
       text-shadow: 0 0 2px black;
       color: #ecd4db;
       white-space: nowrap;
@@ -73,13 +73,11 @@
 <body>
 
   <div class="marco">
-    <!-- 🎥 Video de fondo de 768x768 px -->
     <video autoplay muted loop id="fondo">
       <source src="fondo.mp4" type="video/mp4">
       Tu navegador no soporta video.
     </video>
 
-    <!-- Contenido encima del video -->
     <div class="contenedor">
       <img id="foto" class="foto" src="" alt="Peludo" />
       <div class="nombre" id="nombre"></div>
@@ -88,8 +86,9 @@
 
   <script>
     const url = 'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjse6RTSM10tWNBeUhO3wIzCeFJBPIHzpm4ZNvYiMP3m56UV9DyfirmMHsqC1Dqa08d2o70MS9Dv4ZG5m6lNyHXjf1Verpq7SChlFRgt8PV9M4ux3HuubqiitGhUaDeriSbc_p5-URJVemAAW7UKuXxWlUgcaHHiTwq06wnl4vgLFoeFxW5kTwjBPNbKwqVYkF7aNaTku2nsPIkf-q6y-z0svMrAbZklwgkYzO2emAoEYrmDjOiRSdHqZxAh08UuiHGNZu716o6iYSgIyz46UMNuiMwAYSMpB_EvVeL&lib=M6Up0sq9BxshXe-Yrmbyfm6eEHa1C_Htb';
-     let peludos = [];
-	  let index = Math.floor(Math.random() * peludos.length);
+    
+    let peludos = [];
+    let index = 0;
 
     function mostrarSiguiente() {
       if (peludos.length === 0) return;
@@ -102,14 +101,13 @@
     }
 
     fetch(url)
-  .then(res => res.json())
-  .then(data => {
-    peludos = data;
-    index = Math.floor(Math.random() * peludos.length); // 🎯 índice aleatorio
-    mostrarSiguiente();
-    setInterval(mostrarSiguiente, 10000);
-  });
-
+      .then(res => res.json())
+      .then(data => {
+        peludos = data;
+        index = Math.floor(Math.random() * peludos.length); // 🟡 Selección aleatoria inicial
+        mostrarSiguiente();
+        setInterval(mostrarSiguiente, 10000); // Cambia cada 10 segundos
+      });
   </script>
 </body>
 </html>
